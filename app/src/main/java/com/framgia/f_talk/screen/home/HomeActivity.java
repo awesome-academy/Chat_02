@@ -1,9 +1,11 @@
-package com.framgia.f_talk;
+package com.framgia.f_talk.screen.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HomeActivity extends AppCompatActivity {
+import com.framgia.f_talk.BaseActivity;
+import com.framgia.f_talk.R;
+
+public class HomeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
