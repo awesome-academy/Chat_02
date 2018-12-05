@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">f-talk</string>
+    <string name="title_welcome">Find your new friends right now!</string>
+    <string name="action_get_started">Get started</string>
+    <string name="msg_have_an_account_already">Or, have an account already?</string>
+    <string name="action_log_in">Log in</string>
+    <string name="title_log_in">Log in to f-talk</string>
+    <string name="msg_forgot_your_password">Forgot your password? </string>
+    <string name="action_click_here">Click here!</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="msg_or">OR</string>
 </resources>
