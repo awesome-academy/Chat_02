@@ -1,37 +1,54 @@
 package com.framgia.f_talk.screen.splash;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.android.databinding.library.baseAdapters.BR;
 import com.framgia.f_talk.BaseActivity;
-import com.framgia.f_talk.BaseViewModel;
-import com.framgia.f_talk.screen.home.HomeActivity;
-import com.framgia.f_talk.screen.welcome.WelcomeActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import com.framgia.f_talk.R;
+import com.framgia.f_talk.databinding.ActivitySplashBinding;
 
-public class SplashActivity extends BaseActivity {
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+
+public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashViewModel>
+        implements SplashNavigator {
+
+    @Inject
+    SplashViewModel mSplashViewModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        if (FirebaseAuth.getInstance().getCurrentUser() == null)
-            startActivity(new Intent(this, WelcomeActivity.class));
-        else startActivity(new Intent(this, HomeActivity.class));
-        finish();
+        setContentView(R.layout.activity_splash);
+        mSplashViewModel.setNavigator(this);
+        mSplashViewModel.decideNextActivity();
     }
 
     @Override
     public int getBindingVariable() {
-        return 0;
+        return BR.viewModel;
     }
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_splash;
     }
 
     @Override
-    public BaseViewModel getViewModel() {
-        return null;
+    public SplashViewModel getViewModel() {
+        return mSplashViewModel;
+    }
+
+    @Override
+    public void openWelcomeActivity() {
+        // TODO: 12/6/18 move to welcome
+    }
+
+    @Override
+    public void openMainActivity() {
+        // TODO: 12/6/18 move to main
     }
 }

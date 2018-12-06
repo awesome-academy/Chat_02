@@ -1,6 +1,5 @@
 package com.framgia.f_talk;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -18,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import dagger.android.AndroidInjection;
 
-@SuppressLint("Registered")
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel>
         extends AppCompatActivity implements BaseFragment.Callback {
     private ProgressDialog mProgressDialog;
@@ -70,8 +68,8 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        performDependencyInjection();
         super.onCreate(savedInstanceState, persistentState);
+        performDependencyInjection();
         performDataBinding();
     }
 
