@@ -7,6 +7,7 @@ android {
         applicationId "com.framgia.f_talk"
         minSdkVersion 19
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -54,4 +55,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:4.38.1'
     implementation 'com.google.dagger:dagger:2.19'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
+    implementation 'com.google.dagger:dagger-android-support:2.19'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
+    implementation 'com.android.support:multidex:1.0.3'
 }
