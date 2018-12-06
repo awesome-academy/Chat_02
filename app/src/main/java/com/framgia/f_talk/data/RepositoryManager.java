@@ -1,4 +1,7 @@
 package com.framgia.f_talk.data;
 
-public interface RepositoryManager {
+import com.framgia.f_talk.data.source.remote.AuthenticationSource;
+
+public interface RepositoryManager extends AuthenticationSource {
+
 }

@@ -3,6 +3,7 @@ package com.framgia.f_talk.util.di.module;
 import android.app.Application;
 import android.content.Context;
 
+import com.framgia.f_talk.data.RepositoryManager;
 import com.framgia.f_talk.util.rx.AppSchedulerProvider;
 import com.framgia.f_talk.util.rx.SchedulerProvider;
 
@@ -22,5 +23,11 @@ public class AppModule {
     @Provides
     SchedulerProvider provideSchedulerProvider() {
         return new AppSchedulerProvider();
+    }
+
+    @Provides
+    @Singleton
+    RepositoryManager getRepositoryManager(RepositoryManager repositoryManager) {
+        return repositoryManager;
     }
 }

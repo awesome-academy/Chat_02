@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.framgia.f_talk.BaseActivity;
+import com.framgia.f_talk.BaseViewModel;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.screen.login.LoginActivity;
 import com.framgia.f_talk.screen.signup.SignUpActivity;
@@ -31,5 +32,20 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
             default:
                 break;
         }
+    }
+
+    @Override
+    public int getBindingVariable() {
+        return 0;
+    }
+
+    @Override
+    public int getLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public BaseViewModel getViewModel() {
+        return null;
     }
 }
