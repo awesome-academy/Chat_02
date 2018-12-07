@@ -11,6 +11,8 @@ public class Constant {
     public static final String PERMISSION_EMAIL = "email";
 
     public static final String PERMISSION_PUBLIC_PROFILE = "public_profile";
+    public static final String EXTRA_FULL_NAME = "com.framgia.ftalk.extras.EXTRA_FULL_NAME";
+    public static final String EXTRA_EMAIL = "com.framgia.ftalk.extras.EXTRA_EMAIL";
 
     private Constant() {
     }

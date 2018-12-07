@@ -17,4 +17,5 @@
     <dimen name="dp_12">12dp</dimen>
     <dimen name="dp_96">96dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_168">168dp</dimen>
 </resources>

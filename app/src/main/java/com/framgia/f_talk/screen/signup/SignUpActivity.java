@@ -8,12 +8,15 @@ import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseActivity;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.ActivitySignUpBinding;
+import com.framgia.f_talk.screen.createaccount.CreateAccountActivity;
 import com.google.android.gms.common.SignInButton;
 
 import javax.inject.Inject;
 
 public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpViewModel>
         implements SignUpNavigator {
+    public static final String EXTRA_FULL_NAME = "com.framgia.ftalk.extras.EXTRA_FULL_NAME";
+    public static final String EXTRA_EMAIL = "com.framgia.ftalk.extras.EXTRA_EMAIL";
     @Inject
     SignUpViewModel mSignUpViewModel;
     private ActivitySignUpBinding mActivitySignUpBinding;
@@ -68,8 +71,19 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpVi
     }
 
     @Override
-    public void moveToPasswordActivity() {
-        // TODO: 12/7/18 Move to Password Activity
+    public void moveToCreateAccountActivity() {
+        String fullName = mActivitySignUpBinding
+                .textInputFullName.getEditText().getText().toString();
+        String email = mActivitySignUpBinding
+                .textInputEmail.getEditText().getText().toString();
+        Intent intent = SignUpActivity.getCreateAccountIntent(this, fullName, email);
+        startActivity(intent);
     }
 
+    public static Intent getCreateAccountIntent(Context context, String fullName, String email) {
+        Intent intent = new Intent(context, CreateAccountActivity.class);
+        intent.putExtra(EXTRA_FULL_NAME, fullName);
+        intent.putExtra(EXTRA_EMAIL, email);
+        return intent;
+    }
 }
