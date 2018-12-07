@@ -1,51 +1,58 @@
 package com.framgia.f_talk.screen.welcome;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
+import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseActivity;
-import com.framgia.f_talk.BaseViewModel;
 import com.framgia.f_talk.R;
+import com.framgia.f_talk.databinding.ActivityWelcomeBinding;
 import com.framgia.f_talk.screen.login.LoginActivity;
 import com.framgia.f_talk.screen.signup.SignUpActivity;
 
-public class WelcomeActivity extends BaseActivity implements View.OnClickListener {
+import javax.inject.Inject;
+
+public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding, WelcomeViewModel>
+        implements WelcomeNavigator {
+    @Inject
+    WelcomeViewModel mWelcomeViewModel;
+
+    public static Intent getIntent(Context context) {
+        return new Intent(context, WelcomeActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        findViewById(R.id.text_get_started).setOnClickListener(this);
-        findViewById(R.id.text_log_in).setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.text_get_started:
-                startActivity(new Intent(this, SignUpActivity.class));
-                break;
-            case R.id.text_log_in:
-                startActivity(new Intent(this, LoginActivity.class));
-                break;
-            default:
-                break;
-        }
+        mWelcomeViewModel.setNavigator(this);
     }
 
     @Override
     public int getBindingVariable() {
-        return 0;
+        return BR.viewModel;
     }
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_welcome;
     }
 
     @Override
-    public BaseViewModel getViewModel() {
-        return null;
+    public WelcomeViewModel getViewModel() {
+        return mWelcomeViewModel;
     }
+
+    @Override
+    public void openLoginActivity() {
+        Intent intent = LoginActivity.getIntent(this);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openSignUpActivity() {
+        Intent intent = SignUpActivity.getIntent(this);
+        startActivity(intent);
+    }
+
 }
