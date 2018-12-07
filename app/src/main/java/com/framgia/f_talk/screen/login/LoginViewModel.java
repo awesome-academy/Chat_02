@@ -4,6 +4,7 @@ import com.framgia.f_talk.BaseViewModel;
 import com.framgia.f_talk.data.RepositoryManager;
 import com.framgia.f_talk.util.StringUtil;
 import com.framgia.f_talk.util.rx.SchedulerProvider;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginViewModel extends BaseViewModel<LoginNavigator> {
@@ -11,8 +12,12 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
         super(repositoryManager, schedulerProvider);
     }
 
-    public void onLoginClick(){
+    public void onLoginClick() {
         getNavigator().loginWithEmailAndPassword();
+    }
+
+    public void onGoogleLoginClick() {
+        getNavigator().loginWithGoogle();
     }
 
     public void loginWithEmail(FirebaseAuth firebaseAuth, String email, String password) {
@@ -33,5 +38,17 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                         }, throwable -> getNavigator().onLoginFailure()
                         , () -> getNavigator().onLoginFailure()
                 ));
+    }
+
+    public void loginWithGoogle(FirebaseAuth firebaseAuth, AuthCredential credential) {
+        getCompositeDisposable().add(getRepositoryManager()
+                .signInWithCredential(firebaseAuth, credential)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(authResult -> {
+                            if (authResult.getUser() != null) getNavigator().onLoginSuccess();
+                        },
+                        throwable -> getNavigator().onLoginFailure(),
+                        () -> getNavigator().onLoginFailure()));
     }
 }
