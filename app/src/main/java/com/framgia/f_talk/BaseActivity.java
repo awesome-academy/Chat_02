@@ -67,9 +67,9 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         performDependencyInjection();
+        super.onCreate(savedInstanceState);
         performDataBinding();
     }
 

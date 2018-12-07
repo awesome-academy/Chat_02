@@ -1,89 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".screen.welcome.WelcomeActivity">
+    tools:context="com.framgia.f_talk.screen.welcome.WelcomeActivity">
 
-    <ImageView
-        android:id="@+id/image_logo"
-        android:layout_width="@dimen/dp_105"
-        android:layout_height="@dimen/dp_100"
-        android:layout_marginStart="@dimen/dp_8"
-        android:layout_marginLeft="@dimen/dp_8"
-        android:layout_marginTop="@dimen/dp_64"
-        android:layout_marginEnd="@dimen/dp_8"
-        android:layout_marginRight="@dimen/dp_8"
-        android:src="@mipmap/ic_f_talk_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/text_welcome_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_32"
-        android:layout_marginLeft="@dimen/dp_32"
-        android:layout_marginTop="@dimen/dp_48"
-        android:layout_marginEnd="@dimen/dp_32"
-        android:layout_marginRight="@dimen/dp_32"
-        android:lineSpacingExtra="@dimen/sp_8"
-        android:text="@string/title_welcome"
-        android:textColor="@color/color_primary"
-        android:textSize="@dimen/sp_24"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_logo" />
+        <variable
+            name="viewModel"
+            type="com.framgia.f_talk.screen.welcome.WelcomeViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/text_get_started"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_48"
-        android:layout_marginStart="@dimen/dp_32"
-        android:layout_marginLeft="@dimen/dp_32"
-        android:layout_marginTop="@dimen/dp_32"
-        android:layout_marginEnd="@dimen/dp_32"
-        android:layout_marginRight="@dimen/dp_32"
-        android:background="@drawable/background_text_button"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:text="@string/action_get_started"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_18"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_welcome_title" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/text_have_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_32"
-        android:text="@string/msg_have_an_account_already"
-        android:textColor="@color/color_primary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_log_in"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/image_logo"
+            android:layout_width="@dimen/dp_105"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_64"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_8"
+            android:src="@mipmap/ic_f_talk_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_log_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dp_4"
-        android:paddingEnd="@dimen/dp_4"
-        android:text="@string/action_log_in"
-        android:textColor="@color/color_primary"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_have_account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/text_have_account" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_welcome_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_32"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_48"
+            android:layout_marginEnd="@dimen/dp_32"
+            android:layout_marginRight="@dimen/dp_32"
+            android:lineSpacingExtra="@dimen/sp_8"
+            android:text="@string/title_welcome"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_logo" />
+
+        <TextView
+            android:id="@+id/text_get_started"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginStart="@dimen/dp_32"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_32"
+            android:layout_marginRight="@dimen/dp_32"
+            android:background="@drawable/background_text_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.onGetStartedClick()}"
+            android:text="@string/action_get_started"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_welcome_title" />
+
+        <TextView
+            android:id="@+id/text_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_32"
+            android:text="@string/msg_have_an_account_already"
+            android:textColor="@color/color_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_log_in"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/text_log_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onLoginClick()}"
+            android:paddingStart="@dimen/dp_4"
+            android:paddingEnd="@dimen/dp_4"
+            android:text="@string/action_log_in"
+            android:textColor="@color/color_primary"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_have_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_have_account" />
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
