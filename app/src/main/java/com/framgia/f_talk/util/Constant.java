@@ -7,6 +7,11 @@ public class Constant {
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
                     Pattern.CASE_INSENSITIVE);
     public static final int MIN_PASSWORD_LENGTH = 6;
+
+    public static final String PERMISSION_EMAIL = "email";
+
+    public static final String PERMISSION_PUBLIC_PROFILE = "public_profile";
+
     private Constant() {
     }
 }

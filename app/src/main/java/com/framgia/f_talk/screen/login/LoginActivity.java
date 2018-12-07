@@ -6,10 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseActivity;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.ActivityLoginBinding;
+import com.framgia.f_talk.util.Constant;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,19 +24,22 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import javax.inject.Inject;
 
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel>
-        implements LoginNavigator {
+        implements LoginNavigator, FacebookCallback<LoginResult> {
     private static final int SIGN_IN_WITH_GOOGLE_CODE = 101;
     @Inject
     LoginViewModel mLoginViewModel;
     private ActivityLoginBinding mActivityLoginBinding;
 
     private GoogleSignInClient mClient;
+
+    private CallbackManager mCallbackManager;
 
     public static Intent getIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -57,6 +66,15 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         mLoginViewModel.setNavigator(this);
         mActivityLoginBinding = getViewDataBinding();
         setUpGoogleSignInButton();
+        setUpFacebookLoginButton();
+    }
+
+    private void setUpFacebookLoginButton() {
+        mCallbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = mActivityLoginBinding.buttonFacebookLogIn;
+        loginButton.setReadPermissions(Constant.PERMISSION_EMAIL,
+                Constant.PERMISSION_PUBLIC_PROFILE);
+        loginButton.registerCallback(mCallbackManager, this);
     }
 
     private void setUpGoogleSignInButton() {
@@ -122,6 +140,25 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             } catch (ApiException e) {
                 e.printStackTrace();
             }
+            return;
         }
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onSuccess(LoginResult loginResult) {
+        AuthCredential credential = FacebookAuthProvider
+                .getCredential(loginResult.getAccessToken().getToken());
+        mLoginViewModel.loginWithFacebook(FirebaseAuth.getInstance(), credential);
+    }
+
+    @Override
+    public void onCancel() {
+        Toast.makeText(this, getString(R.string.msg_login_cancel), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onError(FacebookException error) {
+        Toast.makeText(this, getString(R.string.msg_login_fail), Toast.LENGTH_SHORT).show();
     }
 }

@@ -51,4 +51,16 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                         throwable -> getNavigator().onLoginFailure(),
                         () -> getNavigator().onLoginFailure()));
     }
+
+    public void loginWithFacebook(FirebaseAuth firebaseAuth, AuthCredential credential) {
+        getCompositeDisposable().add(getRepositoryManager()
+                .signInWithCredential(firebaseAuth, credential)
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(authResult -> {
+                            if (authResult.getUser() != null) getNavigator().onLoginSuccess();
+                        },
+                        throwable -> getNavigator().onLoginFailure(),
+                        () -> getNavigator().onLoginFailure()));
+    }
 }
