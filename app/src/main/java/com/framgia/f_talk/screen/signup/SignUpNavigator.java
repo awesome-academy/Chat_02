@@ -2,9 +2,11 @@ package com.framgia.f_talk.screen.signup;
 
 public interface SignUpNavigator {
 
-    void signUpWithEmailAndPassword();
+    void provideNameAndEmail();
 
-    void onDataValid();
+    void onFullNameInvalid();
 
-    void onDataInvalid();
+    void onEmailInvalid();
+
+    void moveToPasswordActivity();
 }
