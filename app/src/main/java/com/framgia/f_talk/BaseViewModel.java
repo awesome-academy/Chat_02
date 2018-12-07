@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class BaseViewModel<N> extends ViewModel {
+public abstract class BaseViewModel<N> extends ViewModel {
     private final RepositoryManager mRepositoryManager;
     private final ObservableBoolean mIsLoading = new ObservableBoolean(false);
     private final SchedulerProvider mSchedulerProvider;
@@ -37,6 +37,10 @@ public class BaseViewModel<N> extends ViewModel {
         return mIsLoading;
     }
 
+    public void setIsLoading(boolean isLoading) {
+        mIsLoading.set(isLoading);
+    }
+
     public SchedulerProvider getSchedulerProvider() {
         return mSchedulerProvider;
     }
@@ -45,11 +49,11 @@ public class BaseViewModel<N> extends ViewModel {
         return mCompositeDisposable;
     }
 
-    public WeakReference<N> getNavigator() {
-        return mNavigator;
+    public N getNavigator() {
+        return mNavigator.get();
     }
 
-    public void setNavigator(WeakReference<N> navigator) {
-        mNavigator = navigator;
+    public void setNavigator(N navigator) {
+        mNavigator = new WeakReference<>(navigator);
     }
 }
