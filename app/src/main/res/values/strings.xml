@@ -16,4 +16,7 @@
     <string name="action_next">Next</string>
     <string name="msg_email_invalid">Your email address is invalid!</string>
     <string name="msg_password_invalid">Your password is invalid!</string>
+    <string name="msg_login_success">Login Success!</string>
+    <string name="msg_login_fail">Login Fail!</string>
+    <string name="msg_full_name_invalid">Full name must not be blank!</string>
 </resources>

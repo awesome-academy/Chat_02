@@ -47,17 +47,29 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpVi
 
 
     @Override
-    public void signUpWithEmailAndPassword() {
-
+    public void provideNameAndEmail() {
+        mActivitySignUpBinding.textInputFullName.setError(null);
+        mActivitySignUpBinding.textInputEmail.setError(null);
+        String fullName = mActivitySignUpBinding
+                .textInputFullName.getEditText().getText().toString();
+        String email = mActivitySignUpBinding
+                .textInputEmail.getEditText().getText().toString();
+        mSignUpViewModel.setUserData(fullName, email);
     }
 
     @Override
-    public void onDataValid() {
-
+    public void onFullNameInvalid() {
+        mActivitySignUpBinding.textInputFullName.setError(getString(R.string.msg_full_name_invalid));
     }
 
     @Override
-    public void onDataInvalid() {
-
+    public void onEmailInvalid() {
+        mActivitySignUpBinding.textInputEmail.setError(getString(R.string.msg_email_invalid));
     }
+
+    @Override
+    public void moveToPasswordActivity() {
+        // TODO: 12/7/18 Move to Password Activity
+    }
+
 }
