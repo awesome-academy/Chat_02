@@ -4,6 +4,8 @@ public interface LoginNavigator {
 
     void loginWithEmailAndPassword();
 
+    void loginWithGoogle();
+
     void onLoginSuccess();
 
     void onLoginFailure();
