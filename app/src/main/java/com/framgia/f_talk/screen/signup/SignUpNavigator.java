@@ -8,5 +8,5 @@ public interface SignUpNavigator {
 
     void onEmailInvalid();
 
-    void moveToPasswordActivity();
+    void moveToCreateAccountActivity();
 }

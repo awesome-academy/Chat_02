@@ -23,6 +23,6 @@ public class SignUpViewModel extends BaseViewModel<SignUpNavigator> {
             getNavigator().onEmailInvalid();
             return;
         }
-        getNavigator().moveToPasswordActivity();
+        getNavigator().moveToCreateAccountActivity();
     }
 }
