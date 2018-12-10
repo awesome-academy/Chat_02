@@ -4,6 +4,14 @@ public interface SignUpNavigator {
 
     void provideNameAndEmail();
 
+    void signUpWithGoogle();
+
+    void onSignUpGoogleSuccess();
+
+    void onSignUpFacebookSuccess();
+
+    void onSignUpFailure();
+
     void onFullNameInvalid();
 
     void onEmailInvalid();
