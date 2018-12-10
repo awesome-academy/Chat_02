@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -15,10 +16,19 @@ import com.framgia.f_talk.databinding.ActivityHomeBinding;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
 public class HomeActivity extends BaseActivity<ActivityHomeBinding, HomeViewModel>
-        implements HomeNavigator, BottomNavigationView.OnNavigationItemSelectedListener {
+        implements HomeNavigator, BottomNavigationView.OnNavigationItemSelectedListener,
+        HasSupportFragmentInjector {
+    @Inject
+    DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
     @Inject
     HomeViewModel mHomeViewModel;
+    @Inject
+    HomePagerAdapter mHomePagerAdapter;
     private ActivityHomeBinding mActivityHomeBinding;
 
     public static Intent getIntent(Context context) {
@@ -60,19 +70,32 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding, HomeViewMode
         });
         mActivityHomeBinding.textSearchHint.setOnClickListener(v ->
                 mActivityHomeBinding.searchView.setIconified(false));
+        mHomePagerAdapter.setTabCount(HomePagerAdapter.NUMBER_OF_HOME_TAB);
+        mActivityHomeBinding.viewPagerHome.setAdapter(mHomePagerAdapter);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.navigation_recent:
+                mActivityHomeBinding.viewPagerHome
+                        .setCurrentItem(HomePagerAdapter.RECENT_TAB_INDEX);
                 return true;
             case R.id.navigation_group:
+                mActivityHomeBinding.viewPagerHome
+                        .setCurrentItem(HomePagerAdapter.GROUP_TAB_INDEX);
                 return true;
             case R.id.navigation_me:
+                mActivityHomeBinding.viewPagerHome
+                        .setCurrentItem(HomePagerAdapter.ME_TAB_INDEX);
                 return true;
             default:
                 return false;
         }
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return mFragmentDispatchingAndroidInjector;
     }
 }
