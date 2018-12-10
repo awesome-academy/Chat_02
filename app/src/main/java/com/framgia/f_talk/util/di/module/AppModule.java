@@ -7,8 +7,10 @@ import com.framgia.f_talk.data.AppRepositoryManager;
 import com.framgia.f_talk.data.RepositoryManager;
 import com.framgia.f_talk.data.source.remote.AppAuthenticationSource;
 import com.framgia.f_talk.data.source.remote.AppRealtimeDatabaseSource;
+import com.framgia.f_talk.data.source.remote.AppStorageSource;
 import com.framgia.f_talk.data.source.remote.AuthenticationSource;
 import com.framgia.f_talk.data.source.remote.RealtimeDatabaseSource;
+import com.framgia.f_talk.data.source.remote.StorageSource;
 import com.framgia.f_talk.util.rx.AppSchedulerProvider;
 import com.framgia.f_talk.util.rx.SchedulerProvider;
 
@@ -42,10 +44,17 @@ public class AppModule {
                                                              appAuthenticationSource) {
         return appAuthenticationSource;
     }
+
     @Provides
     @Singleton
     RealtimeDatabaseSource provideRealtimeDatabaseSource(AppRealtimeDatabaseSource
                                                                  appRealtimeDatabaseSource) {
         return appRealtimeDatabaseSource;
+    }
+
+    @Provides
+    @Singleton
+    StorageSource provideStorageSource(AppStorageSource appStorageSource) {
+        return appStorageSource;
     }
 }

@@ -1,7 +1,10 @@
 package com.framgia.f_talk.data;
 
+import android.net.Uri;
+
 import com.framgia.f_talk.data.source.remote.AuthenticationSource;
 import com.framgia.f_talk.data.source.remote.RealtimeDatabaseSource;
+import com.framgia.f_talk.data.source.remote.StorageSource;
 import com.framgia.f_talk.data.source.remote.firebase.FirebaseChildEvent;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -9,7 +12,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StreamDownloadTask;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -26,12 +36,15 @@ import io.reactivex.functions.Function;
 public class AppRepositoryManager implements RepositoryManager {
     private final AuthenticationSource mAuthenticationSource;
     private final RealtimeDatabaseSource mRealtimeDatabaseSource;
+    private final StorageSource mStorageSource;
 
     @Inject
     public AppRepositoryManager(AuthenticationSource authenticationSource,
-                                RealtimeDatabaseSource realtimeDatabaseSource) {
+                                RealtimeDatabaseSource realtimeDatabaseSource,
+                                StorageSource storageSource) {
         mAuthenticationSource = authenticationSource;
         mRealtimeDatabaseSource = realtimeDatabaseSource;
+        mStorageSource = storageSource;
     }
 
     @Override
@@ -168,5 +181,96 @@ public class AppRepositoryManager implements RepositoryManager {
     public <T> Flowable<FirebaseChildEvent<T>> observeChildEvent(Query query, Function<
             ? super FirebaseChildEvent<DataSnapshot>, ? extends FirebaseChildEvent<T>> mapper) {
         return mRealtimeDatabaseSource.observeChildEvent(query, mapper);
+    }
+
+    @Override
+    public Maybe<byte[]> getBytes(StorageReference storageRef, long maxDownloadSizeBytes) {
+        return mStorageSource.getBytes(storageRef, maxDownloadSizeBytes);
+    }
+
+    @Override
+    public Maybe<Uri> getDownloadUrl(StorageReference storageRef) {
+        return mStorageSource.getDownloadUrl(storageRef);
+    }
+
+    @Override
+    public Single<FileDownloadTask.TaskSnapshot> getFile(StorageReference storageRef,
+                                                         File destinationFile) {
+        return mStorageSource.getFile(storageRef, destinationFile);
+    }
+
+    @Override
+    public Single<FileDownloadTask.TaskSnapshot> getFile(StorageReference storageRef,
+                                                         Uri destinationUri) {
+        return mStorageSource.getFile(storageRef, destinationUri);
+    }
+
+    @Override
+    public Maybe<StorageMetadata> getMetadata(StorageReference storageRef) {
+        return mStorageSource.getMetadata(storageRef);
+    }
+
+    @Override
+    public Single<StreamDownloadTask.TaskSnapshot> getStream(StorageReference storageRef) {
+        return mStorageSource.getStream(storageRef);
+    }
+
+    @Override
+    public Single<StreamDownloadTask.TaskSnapshot> getStream(StorageReference storageRef,
+                                                             StreamDownloadTask.StreamProcessor
+                                                                     processor) {
+        return mStorageSource.getStream(storageRef, processor);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putBytes(StorageReference storageRef, byte[] bytes) {
+        return mStorageSource.putBytes(storageRef, bytes);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putBytes(StorageReference storageRef, byte[] bytes,
+                                                    StorageMetadata metadata) {
+        return mStorageSource.putBytes(storageRef, bytes, metadata);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putFile(StorageReference storageRef, Uri uri) {
+        return mStorageSource.putFile(storageRef, uri);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putFile(StorageReference storageRef, Uri uri,
+                                                   StorageMetadata metadata) {
+        return mStorageSource.putFile(storageRef, uri, metadata);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putFile(StorageReference storageRef, Uri uri,
+                                                   StorageMetadata metadata,
+                                                   Uri existingUploadUri) {
+        return mStorageSource.putFile(storageRef, uri, metadata, existingUploadUri);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putStream(StorageReference storageRef,
+                                                     InputStream stream, StorageMetadata metadata) {
+        return mStorageSource.putStream(storageRef, stream, metadata);
+    }
+
+    @Override
+    public Single<UploadTask.TaskSnapshot> putStream(StorageReference storageRef,
+                                                     InputStream stream) {
+        return mStorageSource.putStream(storageRef, stream);
+    }
+
+    @Override
+    public Maybe<StorageMetadata> updateMetadata(StorageReference storageRef,
+                                                 StorageMetadata metadata) {
+        return mStorageSource.updateMetadata(storageRef, metadata);
+    }
+
+    @Override
+    public Completable delete(StorageReference storageRef) {
+        return mStorageSource.delete(storageRef);
     }
 }
