@@ -11,6 +11,8 @@ import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseFragment;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.FragmentRecentBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import javax.inject.Inject;
 
@@ -47,6 +49,8 @@ public class RecentFragment extends BaseFragment<FragmentRecentBinding, RecentVi
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mFragmentRecentBinding.recyclerRecent.setLayoutManager(mLayoutManager);
         mFragmentRecentBinding.recyclerRecent.setAdapter(mRecentAdapter);
+        mRecentViewModel.fetchRecentMessage(FirebaseDatabase.getInstance(),
+                FirebaseAuth.getInstance());
     }
 
     @Override

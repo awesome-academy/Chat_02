@@ -58,6 +58,14 @@ public class Group {
         mGroupDescription = groupDescription;
     }
 
+    public void setGroupId(String groupId) {
+        mGroupId = groupId;
+    }
+
+    public void setMemberUIds(List<String> memberUIds) {
+        mMemberUIds = memberUIds;
+    }
+
     public void addMember(String uId) {
         if (!mMemberUIds.contains(uId)) mMemberUIds.add(uId);
     }

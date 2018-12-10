@@ -52,6 +52,30 @@ public class Message implements Comparable<Message> {
         return mTimeStamp;
     }
 
+    public void setSenderId(String senderId) {
+        mSenderId = senderId;
+    }
+
+    public void setMessageAccessType(int messageAccessType) {
+        mMessageAccessType = messageAccessType;
+    }
+
+    public void setReceiverId(String receiverId) {
+        mReceiverId = receiverId;
+    }
+
+    public void setMessageContentType(int messageContentType) {
+        mMessageContentType = messageContentType;
+    }
+
+    public void setContent(String content) {
+        mContent = content;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        mTimeStamp = timeStamp;
+    }
+
     @Override
     public int compareTo(@NonNull Message message) {
         return message.getTimeStamp() > this.getTimeStamp() ? 1 : -1;
