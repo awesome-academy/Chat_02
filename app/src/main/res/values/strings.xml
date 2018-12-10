@@ -26,4 +26,6 @@
     <string name="hint_confirm_your_password">Confirm your password</string>
     <string name="msg_password_not_match">Password not match!</string>
     <string name="msg_create_account_fail">Create account fail, try again later!</string>
+    <string name="msg_sign_up_cancel">Sign up cancel!</string>
+    <string name="msg_sign_up_error">Sign up failure by an Facebook\'s error!</string>
 </resources>
