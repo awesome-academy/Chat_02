@@ -2,10 +2,16 @@ package com.framgia.f_talk.screen.signup;
 
 import com.framgia.f_talk.BaseViewModel;
 import com.framgia.f_talk.data.RepositoryManager;
+import com.framgia.f_talk.data.model.User;
+import com.framgia.f_talk.util.Constant;
 import com.framgia.f_talk.util.StringUtil;
 import com.framgia.f_talk.util.rx.SchedulerProvider;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class SignUpViewModel extends BaseViewModel<SignUpNavigator> {
     public SignUpViewModel(RepositoryManager repositoryManager, SchedulerProvider schedulerProvider) {
@@ -56,5 +62,18 @@ public class SignUpViewModel extends BaseViewModel<SignUpNavigator> {
                         },
                         throwable -> getNavigator().onSignUpFailure(),
                         () -> getNavigator().onSignUpFailure()));
+    }
+
+    public void createUserInfo(FirebaseDatabase firebaseDatabase, FirebaseUser firebaseUser) {
+        String uid = firebaseUser.getUid();
+        String fullName = firebaseUser.getDisplayName();
+        String email = firebaseUser.getEmail();
+        String avatarUrl = Objects.requireNonNull(firebaseUser.getPhotoUrl()).toString();
+        User user = new User(uid, fullName, email, avatarUrl);
+        getCompositeDisposable().add(getRepositoryManager()
+                .setValue(firebaseDatabase.getReference()
+                        .child(StringUtil.append(Constant.USER_DATABASE_DIR, uid)), user)
+                .subscribe(() -> getNavigator().onCreateUserInfoSuccess(),
+                        throwable -> getNavigator().onCreateUserInfoFailure()));
     }
 }

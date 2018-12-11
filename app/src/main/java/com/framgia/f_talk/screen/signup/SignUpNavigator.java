@@ -17,4 +17,8 @@ public interface SignUpNavigator {
     void onEmailInvalid();
 
     void moveToCreateAccountActivity();
+
+    void onCreateUserInfoSuccess();
+
+    void onCreateUserInfoFailure();
 }

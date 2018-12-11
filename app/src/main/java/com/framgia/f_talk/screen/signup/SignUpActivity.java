@@ -16,6 +16,7 @@ import com.framgia.f_talk.BaseActivity;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.ActivitySignUpBinding;
 import com.framgia.f_talk.screen.createaccount.CreateAccountActivity;
+import com.framgia.f_talk.screen.home.HomeActivity;
 import com.framgia.f_talk.util.Constant;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import javax.inject.Inject;
 
@@ -93,12 +95,14 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpVi
 
     @Override
     public void onSignUpGoogleSuccess() {
-        // TODO: 12/8/18 Sign up Google Success
+        mSignUpViewModel.createUserInfo(FirebaseDatabase.getInstance(),
+                FirebaseAuth.getInstance().getCurrentUser());
     }
 
     @Override
     public void onSignUpFacebookSuccess() {
-        // TODO: 12/8/18 Sign up Facebook Success
+        mSignUpViewModel.createUserInfo(FirebaseDatabase.getInstance(),
+                FirebaseAuth.getInstance().getCurrentUser());
     }
 
     @Override
@@ -125,6 +129,17 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpVi
                 .textInputEmail.getEditText().getText().toString();
         Intent intent = SignUpActivity.getCreateAccountIntent(this, fullName, email);
         startActivity(intent);
+    }
+
+    @Override
+    public void onCreateUserInfoSuccess() {
+        startActivity(HomeActivity.getIntent(this));
+        finish();
+    }
+
+    @Override
+    public void onCreateUserInfoFailure() {
+        Toast.makeText(this, getString(R.string.msg_create_account_fail), Toast.LENGTH_SHORT).show();
     }
 
     private void setUpFacebookSignUpButton() {
