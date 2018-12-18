@@ -40,4 +40,5 @@
     <string name="title_find_friend">Find\nfriends</string>
     <string name="title_friend_request">Friend\nrequest</string>
     <string name="title_edit_info">Edit info</string>
+    <string name="hint_type_your_message">Type your message</string>
 </resources>
