@@ -8,6 +8,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.framgia.f_talk.BaseActivity;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.ActivitySplashBinding;
+import com.framgia.f_talk.screen.home.HomeActivity;
 import com.framgia.f_talk.screen.welcome.WelcomeActivity;
 
 import javax.inject.Inject;
@@ -49,6 +50,8 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
 
     @Override
     public void openMainActivity() {
-        // TODO: 12/6/18 move to main
+        Intent intent = HomeActivity.getIntent(this);
+        startActivity(intent);
+        finish();
     }
 }

@@ -15,6 +15,7 @@ import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseActivity;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.ActivityLoginBinding;
+import com.framgia.f_talk.screen.home.HomeActivity;
 import com.framgia.f_talk.util.Constant;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -108,7 +109,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     @Override
     public void onLoginSuccess() {
-        // TODO: 12/7/18 Move to MainActivity
+        Intent intent = HomeActivity.getIntent(this);
+        startActivity(intent);
+        finish();
     }
 
     @Override

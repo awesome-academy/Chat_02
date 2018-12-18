@@ -9,8 +9,10 @@ import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseActivity;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.ActivityCreateAccountBinding;
+import com.framgia.f_talk.screen.home.HomeActivity;
 import com.framgia.f_talk.util.Constant;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import javax.inject.Inject;
 
@@ -68,7 +70,8 @@ public class CreateAccountActivity
 
     @Override
     public void onCreateAccountSuccess() {
-        // TODO: 12/8/18 Move to Home Activity
+        mCreateAccountViewModel.createUserInfo(FirebaseAuth.getInstance(),
+                FirebaseDatabase.getInstance(), mEmail, mFullName);
     }
 
     @Override
@@ -94,5 +97,16 @@ public class CreateAccountActivity
                 .textInputPassword.getEditText().getText().toString();
         mCreateAccountViewModel.createAccountWithEmailAndPassword(FirebaseAuth.getInstance(),
                 mEmail, password);
+    }
+
+    @Override
+    public void onCreateUserInfoSuccess() {
+        startActivity(HomeActivity.getIntent(this));
+        finish();
+    }
+
+    @Override
+    public void onCreateUserInfoFailure() {
+        Toast.makeText(this, getString(R.string.msg_create_account_fail), Toast.LENGTH_SHORT).show();
     }
 }

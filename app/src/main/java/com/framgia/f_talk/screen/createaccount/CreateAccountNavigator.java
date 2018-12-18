@@ -13,4 +13,8 @@ public interface CreateAccountNavigator {
     void onPasswordNotMatch();
 
     void onPasswordValid();
+
+    void onCreateUserInfoSuccess();
+
+    void onCreateUserInfoFailure();
 }

@@ -14,6 +14,11 @@ public class Constant {
     public static final String EXTRA_FULL_NAME = "com.framgia.ftalk.extras.EXTRA_FULL_NAME";
     public static final String EXTRA_EMAIL = "com.framgia.ftalk.extras.EXTRA_EMAIL";
 
+    public static final String USER_DATABASE_DIR = "users/";
+    public static final String GROUP_DATABASE_DIR = "groups/";
+    public static final String PRIVATE_MESSAGE_DIR = "message_private";
+    public static final String GROUP_MESSAGE_DIR = "message_group";
+
     private Constant() {
     }
 }
