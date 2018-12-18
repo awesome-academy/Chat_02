@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.framgia.f_talk.screen.home.group.GroupFragment;
+import com.framgia.f_talk.screen.home.me.MeFragment;
 import com.framgia.f_talk.screen.home.recent.RecentFragment;
 
 public class HomePagerAdapter extends FragmentStatePagerAdapter {
@@ -27,7 +28,7 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
             case GROUP_TAB_INDEX:
                 return GroupFragment.newInstance();
             case ME_TAB_INDEX:
-                return RecentFragment.newInstance();
+                return MeFragment.newInstance();
             default:
                 return null;
         }
