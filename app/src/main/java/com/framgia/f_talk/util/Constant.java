@@ -13,6 +13,8 @@ public class Constant {
     public static final String PERMISSION_PUBLIC_PROFILE = "public_profile";
     public static final String EXTRA_FULL_NAME = "com.framgia.ftalk.extras.EXTRA_FULL_NAME";
     public static final String EXTRA_EMAIL = "com.framgia.ftalk.extras.EXTRA_EMAIL";
+    public static final String EXTRA_RECEIVER_NAME = "com.framgia.ftalk.extras.RECEIVER_NAME";
+    public static final String EXTRA_RECEIVER_ID = "com.framgia.ftalk.extras.RECEIVER_ID";
 
     public static final String USER_DATABASE_DIR = "users/";
     public static final String GROUP_DATABASE_DIR = "groups/";

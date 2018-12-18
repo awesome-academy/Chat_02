@@ -1,5 +1,7 @@
 package com.framgia.f_talk.util.di.builder;
 
+import com.framgia.f_talk.screen.chat.ChatActivity;
+import com.framgia.f_talk.screen.chat.ChatActivityModule;
 import com.framgia.f_talk.screen.createaccount.CreateAccountActivity;
 import com.framgia.f_talk.screen.createaccount.CreateAccountActivityModule;
 import com.framgia.f_talk.screen.home.HomeActivity;
@@ -39,4 +41,7 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {HomeActivityModule.class, RecentFragmentProvider.class,
             GroupFragmentProvider.class, MeFragmentProvider.class})
     abstract HomeActivity bindHomeActivity();
+
+    @ContributesAndroidInjector(modules = {ChatActivityModule.class})
+    abstract ChatActivity bindChatActivity();
 }

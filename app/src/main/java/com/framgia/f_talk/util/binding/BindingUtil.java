@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.framgia.f_talk.R;
+import com.framgia.f_talk.screen.chat.ChatAdapter;
+import com.framgia.f_talk.screen.chat.ChatItemViewModel;
 import com.framgia.f_talk.screen.home.group.GroupAdapter;
 import com.framgia.f_talk.screen.home.group.GroupItemViewModel;
 import com.framgia.f_talk.screen.home.recent.RecentAdapter;
@@ -49,6 +51,16 @@ public class BindingUtil {
         if (adapter != null) {
             adapter.clearItems();
             adapter.addItems(groupItemViewModels);
+        }
+    }
+
+    @BindingAdapter({"adapter"})
+    public static void addChatItem(RecyclerView recyclerView, List<ChatItemViewModel>
+            chatItemViewModels) {
+        ChatAdapter adapter = (ChatAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(chatItemViewModels);
         }
     }
 
