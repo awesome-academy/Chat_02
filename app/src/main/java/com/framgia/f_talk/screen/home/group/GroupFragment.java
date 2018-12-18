@@ -11,6 +11,8 @@ import com.framgia.f_talk.BR;
 import com.framgia.f_talk.BaseFragment;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.databinding.FragmentGroupBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import javax.inject.Inject;
 
@@ -25,7 +27,8 @@ public class GroupFragment extends BaseFragment<FragmentGroupBinding, GroupViewM
     GroupViewModel mGroupViewModel;
     @Inject
     ViewModelProvider.Factory mFactory;
-    public static GroupFragment newInstance(){
+
+    public static GroupFragment newInstance() {
         Bundle bundle = new Bundle();
         GroupFragment groupFragment = new GroupFragment();
         groupFragment.setArguments(bundle);
@@ -46,6 +49,8 @@ public class GroupFragment extends BaseFragment<FragmentGroupBinding, GroupViewM
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mFragmentGroupBinding.recyclerGroup.setLayoutManager(mLayoutManager);
         mFragmentGroupBinding.recyclerGroup.setAdapter(mGroupAdapter);
+        mGroupViewModel.fetchGroupMessage(FirebaseDatabase.getInstance(),
+                FirebaseAuth.getInstance());
     }
 
     @Override
