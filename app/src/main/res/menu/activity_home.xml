@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_recent"
+        android:icon="@drawable/ic_recent_chat"
+        android:title="@string/title_recent" />
+
+    <item
+        android:id="@+id/navigation_group"
+        android:icon="@drawable/ic_group"
+        android:title="@string/title_group" />
+
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/ic_me"
+        android:title="@string/title_me" />
+
+</menu>
