@@ -13,4 +13,9 @@ public class HomeActivityModule {
                                        SchedulerProvider schedulerProvider) {
         return new HomeViewModel(repositoryManager, schedulerProvider);
     }
+
+    @Provides
+    HomePagerAdapter provideHomePagerAdapter(HomeActivity activity) {
+        return new HomePagerAdapter(activity.getSupportFragmentManager());
+    }
 }
