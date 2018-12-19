@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -60,15 +61,16 @@ public class GroupViewModel extends BaseViewModel<GroupNavigator> {
                                     group.getGroupAvatar(),
                                     message.getContent(),
                                     StringUtil.makeTimeStamp(message.getTimeStamp()),
-                                    group.getGroupId());
+                                    group.getGroupId(), message.getTimeStamp());
                             break;
                         }
                     }
                     return Flowable.just(groupItemViewModel);
                 })
                 .subscribe(groupItemViewModel -> {
-                    if (!mGroupItemViewModels.contains(groupItemViewModel))
-                        mGroupItemViewModels.add(groupItemViewModel);
+                    mGroupItemViewModels.remove(groupItemViewModel);
+                    mGroupItemViewModels.add(groupItemViewModel);
+                    Collections.sort(mGroupItemViewModels);
                 }));
     }
 

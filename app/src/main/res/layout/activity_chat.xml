@@ -95,6 +95,7 @@
             android:layout_width="@dimen/dp_32"
             android:layout_height="@dimen/dp_32"
             android:layout_marginEnd="@dimen/dp_8"
+            android:onClickListener="@{()->viewModel.onAddImageClick()}"
             android:src="@drawable/ic_insert_photo"
             app:layout_constraintBottom_toBottomOf="@+id/edit_text_message"
             app:layout_constraintEnd_toStartOf="@+id/image_send"

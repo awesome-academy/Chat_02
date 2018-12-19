@@ -1,5 +1,6 @@
 package com.framgia.f_talk.screen.home.recent;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import com.framgia.f_talk.BaseViewHolder;
 import com.framgia.f_talk.databinding.ItemRecentEmptyViewBinding;
 import com.framgia.f_talk.databinding.ItemRecentViewBinding;
+import com.framgia.f_talk.screen.chat.ChatActivity;
+import com.framgia.f_talk.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +91,10 @@ public class RecentAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onClick(View v) {
-            // TODO: 12/11/18 Handle event move to chat activity
+            Intent intent = ChatActivity.newIntent(v.getContext());
+            intent.putExtra(Constant.EXTRA_RECEIVER_ID, mRecentItemViewModel.mFriendId.get());
+            intent.putExtra(Constant.EXTRA_RECEIVER_NAME, mRecentItemViewModel.mReceiverName.get());
+            v.getContext().startActivity(intent);
         }
     }
 
