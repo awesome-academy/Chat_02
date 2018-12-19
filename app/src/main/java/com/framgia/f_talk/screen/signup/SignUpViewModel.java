@@ -41,8 +41,6 @@ public class SignUpViewModel extends BaseViewModel<SignUpNavigator> {
     public void signUpWithGoogle(FirebaseAuth firebaseAuth, AuthCredential credential) {
         getCompositeDisposable().add(getRepositoryManager()
                 .signInWithCredential(firebaseAuth, credential)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
                 .subscribe(authResult -> {
                             if (authResult.getUser() != null)
                                 getNavigator().onSignUpGoogleSuccess();
@@ -54,8 +52,6 @@ public class SignUpViewModel extends BaseViewModel<SignUpNavigator> {
     public void signUpWithFacebook(FirebaseAuth firebaseAuth, AuthCredential credential) {
         getCompositeDisposable().add(getRepositoryManager()
                 .signInWithCredential(firebaseAuth, credential)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
                 .subscribe(authResult -> {
                             if (authResult.getUser() != null)
                                 getNavigator().onSignUpFacebookSuccess();

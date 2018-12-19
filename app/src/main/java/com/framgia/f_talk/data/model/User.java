@@ -99,6 +99,26 @@ public class User {
         mDateOfBirth = dateOfBirth;
     }
 
+    public void setUId(String UId) {
+        mUId = UId;
+    }
+
+    public void setGroupIds(List<String> groupIds) {
+        mGroupIds = groupIds;
+    }
+
+    public void setFriendUIds(List<String> friendUIds) {
+        mFriendUIds = friendUIds;
+    }
+
+    public void setIncomeRequests(List<String> incomeRequests) {
+        mIncomeRequests = incomeRequests;
+    }
+
+    public void setOutComeRequest(List<String> outComeRequest) {
+        mOutComeRequest = outComeRequest;
+    }
+
     public void joinGroup(String groupId) {
         if (!mGroupIds.contains(groupId)) mGroupIds.add(groupId);
 

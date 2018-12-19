@@ -70,6 +70,7 @@ public class RecentAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class RecentViewHolder extends BaseViewHolder implements View.OnClickListener {
         private final ItemRecentViewBinding mBinding;
+        private RecentItemViewModel mRecentItemViewModel;
 
         public RecentViewHolder(ItemRecentViewBinding binding) {
             super(binding.getRoot());
@@ -81,10 +82,13 @@ public class RecentAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             final RecentItemViewModel recentItemViewModel = mRecentItemViewModels.get(position);
             mBinding.setViewModel(recentItemViewModel);
             mBinding.executePendingBindings();
+            mRecentItemViewModel = mRecentItemViewModels.get(position);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            // TODO: 12/11/18 Handle event move to chat activity
         }
     }
 

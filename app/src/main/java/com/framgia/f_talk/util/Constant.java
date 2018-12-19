@@ -19,6 +19,14 @@ public class Constant {
     public static final String PRIVATE_MESSAGE_DIR = "message_private";
     public static final String GROUP_MESSAGE_DIR = "message_group";
 
+    public static final String PRIVATE_MESSAGE_DIR_CONNECTION_SYNTAX = "and";
+    public static final String NULL_URL = "NULL";
+
+    public static final String TIME_STAMP_MIN = " min(s) ago";
+    public static final String TIME_STAMP_HOUR = " hour(s) ago";
+    public static final String TIME_STAMP_DAY = " day(s) ago";
+    public static final String TIME_JUST_NOW = "just now";
+
     private Constant() {
     }
 }
