@@ -74,6 +74,7 @@ public class GroupAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class GroupViewHolder extends BaseViewHolder implements View.OnClickListener {
         private final ItemGroupViewBinding mBinding;
+        private GroupItemViewModel mGroupItemViewModel;
 
         public GroupViewHolder(ItemGroupViewBinding binding) {
             super(binding.getRoot());
@@ -85,11 +86,13 @@ public class GroupAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             final GroupItemViewModel groupItemViewModel = mGroupItemViewModels.get(position);
             mBinding.setViewModel(groupItemViewModel);
             mBinding.executePendingBindings();
+            mGroupItemViewModel = mGroupItemViewModels.get(position);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+            // TODO: 12/12/18 Handle event move to chat activity
         }
     }
 

@@ -8,6 +8,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.framgia.f_talk.R;
+import com.framgia.f_talk.screen.home.group.GroupAdapter;
+import com.framgia.f_talk.screen.home.group.GroupItemViewModel;
 import com.framgia.f_talk.screen.home.recent.RecentAdapter;
 import com.framgia.f_talk.screen.home.recent.RecentItemViewModel;
 
@@ -39,10 +42,22 @@ public class BindingUtil {
         }
     }
 
+    @BindingAdapter({"adapter"})
+    public static void addGroupItem(RecyclerView recyclerView, List<GroupItemViewModel>
+            groupItemViewModels) {
+        GroupAdapter adapter = (GroupAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(groupItemViewModels);
+        }
+    }
+
     @BindingAdapter("imageSrc")
     public static void setImageSrc(ImageView imageView, String url) {
         Context context = imageView.getContext();
         RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.image_recent_default)
+                .error(R.drawable.image_recent_default)
                 .circleCrop();
         Glide.with(context)
                 .load(url)

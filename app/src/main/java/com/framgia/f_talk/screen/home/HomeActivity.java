@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -22,7 +23,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 
 public class HomeActivity extends BaseActivity<ActivityHomeBinding, HomeViewModel>
         implements HomeNavigator, BottomNavigationView.OnNavigationItemSelectedListener,
-        HasSupportFragmentInjector {
+        HasSupportFragmentInjector, ViewPager.OnPageChangeListener {
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
     @Inject
@@ -72,6 +73,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding, HomeViewMode
                 mActivityHomeBinding.searchView.setIconified(false));
         mHomePagerAdapter.setTabCount(HomePagerAdapter.NUMBER_OF_HOME_TAB);
         mActivityHomeBinding.viewPagerHome.setAdapter(mHomePagerAdapter);
+        mActivityHomeBinding.viewPagerHome.setOnPageChangeListener(this);
     }
 
     @Override
@@ -97,5 +99,32 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding, HomeViewMode
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return mFragmentDispatchingAndroidInjector;
+    }
+
+    @Override
+    public void onPageScrolled(int i, float v, int i1) {
+
+    }
+
+    @Override
+    public void onPageSelected(int i) {
+        switch (i) {
+            case HomePagerAdapter.RECENT_TAB_INDEX:
+                mActivityHomeBinding.bottomNavigation.setSelectedItemId(R.id.navigation_recent);
+                break;
+            case HomePagerAdapter.GROUP_TAB_INDEX:
+                mActivityHomeBinding.bottomNavigation.setSelectedItemId(R.id.navigation_group);
+                break;
+            case HomePagerAdapter.ME_TAB_INDEX:
+                mActivityHomeBinding.bottomNavigation.setSelectedItemId(R.id.navigation_me);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {
+
     }
 }

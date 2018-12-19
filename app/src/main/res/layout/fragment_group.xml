@@ -16,6 +16,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_group"
             android:layout_width="0dp"
+            adapter="@{viewModel.groupItemViewModels}"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/dp_8"
             android:layout_marginEnd="@dimen/dp_8"

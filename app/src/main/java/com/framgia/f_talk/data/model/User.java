@@ -17,7 +17,10 @@ public class User {
     private List<String> mOutComeRequest;
 
     public User() {
-
+        mGroupIds = new ArrayList<>();
+        mFriendUIds = new ArrayList<>();
+        mIncomeRequests = new ArrayList<>();
+        mOutComeRequest = new ArrayList<>();
     }
 
     public User(String UId, String fullName, String email, String avatarUrl) {
@@ -25,10 +28,6 @@ public class User {
         mFullName = fullName;
         mEmail = email;
         mAvatarUrl = avatarUrl;
-        mGroupIds = new ArrayList<>();
-        mFriendUIds = new ArrayList<>();
-        mIncomeRequests = new ArrayList<>();
-        mOutComeRequest = new ArrayList<>();
     }
 
     public String getUId() {
