@@ -33,4 +33,11 @@
     <string name="title_group">Group</string>
     <string name="title_me">Me</string>
     <string name="msg_nothing_to_show">Nothing to show!</string>
+    <string name="title_log_out">Log out</string>
+    <string name="title_your_photo">Your photo</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_your_friend">Your\nfriends</string>
+    <string name="title_find_friend">Find\nfriends</string>
+    <string name="title_friend_request">Friend\nrequest</string>
+    <string name="title_edit_info">Edit info</string>
 </resources>

@@ -5,6 +5,7 @@ import com.framgia.f_talk.screen.createaccount.CreateAccountActivityModule;
 import com.framgia.f_talk.screen.home.HomeActivity;
 import com.framgia.f_talk.screen.home.HomeActivityModule;
 import com.framgia.f_talk.screen.home.group.GroupFragmentProvider;
+import com.framgia.f_talk.screen.home.me.MeFragmentProvider;
 import com.framgia.f_talk.screen.home.recent.RecentFragmentProvider;
 import com.framgia.f_talk.screen.login.LoginActivity;
 import com.framgia.f_talk.screen.login.LoginActivityModule;
@@ -36,6 +37,6 @@ public abstract class ActivityBuilder {
     abstract CreateAccountActivity bindCreateAccountActivity();
 
     @ContributesAndroidInjector(modules = {HomeActivityModule.class, RecentFragmentProvider.class,
-            GroupFragmentProvider.class})
+            GroupFragmentProvider.class, MeFragmentProvider.class})
     abstract HomeActivity bindHomeActivity();
 }
