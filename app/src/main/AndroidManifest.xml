@@ -44,7 +44,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".screen.createaccount.CreateAccountActivity"/>
+        <activity android:name=".screen.createaccount.CreateAccountActivity" />
+        <activity android:name=".screen.chat.ChatActivity" />
     </application>
 
 </manifest>

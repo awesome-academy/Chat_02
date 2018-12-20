@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screen.chat.ChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_action_bar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_primary"
+        android:elevation="@dimen/dp_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentStart="true"
+            android:scaleType="center"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/image_avatar"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_toEndOf="@id/image_back"
+            android:padding="@dimen/dp_8"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_recent_default" />
+
+        <TextView
+            android:id="@+id/text_receiver_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_toEndOf="@id/image_avatar"
+            android:gravity="center_vertical|start"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_18" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edit_text_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@drawable/background_text_input_chat"
+        android:ellipsize="end"
+        android:hint="@string/hint_type_your_message"
+        android:maxHeight="@dimen/dp_96"
+        android:minHeight="@dimen/dp_40"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_4"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/image_add_image"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_send"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:src="@drawable/ic_send"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_text_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_text_message" />
+
+    <ImageView
+        android:id="@+id/image_add_image"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:src="@drawable/ic_insert_photo"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_text_message"
+        app:layout_constraintEnd_toStartOf="@+id/image_send"
+        app:layout_constraintTop_toTopOf="@+id/edit_text_message" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_message"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative_action_bar"
+        app:stackFromEnd="true" />
+
+</android.support.constraint.ConstraintLayout>
