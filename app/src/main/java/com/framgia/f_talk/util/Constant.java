@@ -20,6 +20,7 @@ public class Constant {
     public static final String GROUP_DATABASE_DIR = "groups/";
     public static final String PRIVATE_MESSAGE_DIR = "message_private";
     public static final String GROUP_MESSAGE_DIR = "message_group";
+    public static final String IMAGE_STORAGE_DIR = "images";
 
     public static final String PRIVATE_MESSAGE_DIR_CONNECTION_SYNTAX = "and";
     public static final String NULL_URL = "NULL";
@@ -28,6 +29,9 @@ public class Constant {
     public static final String TIME_STAMP_HOUR = " hour(s) ago";
     public static final String TIME_STAMP_DAY = " day(s) ago";
     public static final String TIME_JUST_NOW = "just now";
+
+    public static final int IMAGE_MESSAGE_ROUNDING_RADIUS = 16;
+    public static final String Image_TYPE = "image/*";
 
     private Constant() {
     }

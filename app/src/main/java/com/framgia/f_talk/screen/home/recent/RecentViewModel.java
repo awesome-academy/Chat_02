@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -71,15 +72,16 @@ public class RecentViewModel extends BaseViewModel<RecentNavigator> {
                                     user.getAvatarUrl() == null ? Constant.NULL_URL :
                                             user.getAvatarUrl(), message.getContent(),
                                     StringUtil.makeTimeStamp(message.getTimeStamp()),
-                                    user.getUId());
+                                    user.getUId(), message.getTimeStamp());
                             break;
                         }
                     }
                     return Flowable.just(recentItemViewModel);
                 })
                 .subscribe(recentItemViewModel -> {
-                    if (!mRecentItemViewModels.contains(recentItemViewModel))
-                        mRecentItemViewModels.add(recentItemViewModel);
+                    mRecentItemViewModels.remove(recentItemViewModel);
+                    mRecentItemViewModels.add(recentItemViewModel);
+                    Collections.sort(mRecentItemViewModels);
                 }));
 
     }

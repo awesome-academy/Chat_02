@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.framgia.f_talk.R;
 import com.framgia.f_talk.screen.chat.ChatAdapter;
@@ -15,6 +17,7 @@ import com.framgia.f_talk.screen.home.group.GroupAdapter;
 import com.framgia.f_talk.screen.home.group.GroupItemViewModel;
 import com.framgia.f_talk.screen.home.recent.RecentAdapter;
 import com.framgia.f_talk.screen.home.recent.RecentItemViewModel;
+import com.framgia.f_talk.util.Constant;
 
 import java.util.List;
 
@@ -71,6 +74,19 @@ public class BindingUtil {
                 .placeholder(R.drawable.image_recent_default)
                 .error(R.drawable.image_recent_default)
                 .circleCrop();
+        Glide.with(context)
+                .load(url)
+                .apply(requestOptions)
+                .into(imageView);
+    }
+
+    @BindingAdapter("imageMessageContentSrc")
+    public static void setImageMessageContentSrc(ImageView imageView, String url) {
+        Context context = imageView.getContext();
+        RequestOptions requestOptions = new RequestOptions().transforms(new CenterCrop(),
+                new RoundedCorners(Constant.IMAGE_MESSAGE_ROUNDING_RADIUS))
+                .placeholder(R.drawable.image_recent_default)
+                .error(R.drawable.image_recent_default);
         Glide.with(context)
                 .load(url)
                 .apply(requestOptions)

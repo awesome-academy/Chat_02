@@ -1,5 +1,7 @@
 package com.framgia.f_talk.screen.chat;
 
+import android.net.Uri;
+
 public interface ChatNavigator {
     void getMessage();
 
@@ -12,5 +14,7 @@ public interface ChatNavigator {
     void onBack();
 
     void scrollTo(int index);
+
+    void onUploadImageSuccess(Uri uri);
 }
 
